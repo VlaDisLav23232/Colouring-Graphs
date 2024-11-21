@@ -1,8 +1,3 @@
-import json
-
-def reading_json_file(filename):
-    pass
-
 import networkx as nx
 import matplotlib.pyplot as plt
 
