@@ -3,7 +3,20 @@
 import json
 import networkx as nx
 import matplotlib.pyplot as plt
+import argparse
 
+def arguments():
+    """
+    Reads arguments for argparse.
+    """
+    parser = argparse.ArgumentParser(description="Graph Coloring Program")
+    parser.add_argument("input_file", type=str, help="Path to the JSON file \
+    containing graph data",)
+    parser.add_argument("--draw", action="store_true", help="Visualize the graph after recoloring",)
+
+    args = parser.parse_args()
+
+    return args
 
 def reading_json_file(filename: str) -> dict:
     """
