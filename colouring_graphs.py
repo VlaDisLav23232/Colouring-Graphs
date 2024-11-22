@@ -5,6 +5,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import argparse
 
+
 def arguments():
     """
     Reads arguments for argparse.
@@ -17,6 +18,23 @@ def arguments():
     args = parser.parse_args()
 
     return args
+
+
+def run_program():
+    args = arguments()
+
+    if not args.input_file.endswith(".json"):
+        raise argparse.ArgumentTypeError(f"The file {args.input_file} is not a JSON file!")
+    
+    data = reading_json_file(args.input_file)
+    recolored_data = drawing_with_new_colours(data)
+
+    print("Recolored graph data:")
+    print(json.dumps(recolored_data, indent=4))
+
+    if args.draw:
+        draw_graph(recolored_data)
+
 
 def reading_json_file(filename: str) -> dict:
     """
