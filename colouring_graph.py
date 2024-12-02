@@ -108,7 +108,7 @@ def drawing_with_new_colours(data: dict, num: int = 1, new_dict: None|dict = Non
     if len(data) < num:
         return new_dict
 
-    available_colours = ["r", "b", "g"]
+    available_colours = ["r", "g", "b"]
     available_colours.remove(data[str(num)]["color"])
     new_dict.setdefault(str(num), {"color": "", "edge_with": data[str(num)]["edge_with"]})
 
