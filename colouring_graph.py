@@ -11,7 +11,8 @@ def arguments():
     Reads arguments for argparse.
     """
     parser = argparse.ArgumentParser(description="Graph Coloring Program")
-    parser.add_argument("input_file", type=str, nargs = "?", default=None, help="Path to the JSON file \
+    parser.add_argument("input_file", type=str, nargs = "?",\
+    default=None, help="Path to the JSON file \
     containing graph data",)
     parser.add_argument("--draw", action="store_true",\
     help="Visualize the graph before and after after recoloring",)
