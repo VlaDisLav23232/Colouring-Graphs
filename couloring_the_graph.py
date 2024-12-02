@@ -11,9 +11,10 @@ def arguments():
     Reads arguments for argparse.
     """
     parser = argparse.ArgumentParser(description="Graph Coloring Program")
-    parser.add_argument("input_file", type=str, help="Path to the JSON file \
+    parser.add_argument("input_file", type=str, nargs = "?", default=None, help="Path to the JSON file \
     containing graph data",)
-    parser.add_argument("--draw", action="store_true", help="Visualize the graph after recoloring",)
+    parser.add_argument("--draw", action="store_true",\
+    help="Visualize the graph before and after after recoloring",)
 
     args = parser.parse_args()
 
@@ -26,18 +27,28 @@ def run_program():
     '''
     args = arguments()
 
-    if not args.input_file.endswith(".json"):
-        raise argparse.ArgumentTypeError(f"The file {args.input_file} is not a JSON file!")
-
-    data = reading_json_file(args.input_file)
-    recolored_data = drawing_with_new_colours(data)
-
-    if recolored_data is None:
-        print("The graph cannot be recolored!")
-
+    print("-------------------------------------------\n\
+WELCOME TO THE GRAPH RECOULORER!\n\
+-------------------------------------------")
     if args.draw:
-        draw_graph(data)
-        draw_graph(recolored_data)
+        if args.input_file.endswith(".json"):
+            data = reading_json_file(args.input_file)
+            recolored_data = drawing_with_new_colours(data)
+            if recolored_data is None:
+                print("-----------------------------------\n\
+The graph cannot be recoloured!\n\
+-----------------------------------")
+            elif not recolored_data:
+                print("--------------------------------------------------------\n\
+This graph does not have vertices! Try something else!\n\
+--------------------------------------------------------")
+            else:
+                draw_graph(data)
+                draw_graph(recolored_data)
+        else:
+            print(f"--------------------------------------------\n\
+The file {args.input_file} is not a JSON file!\n\
+--------------------------------------------")
 
 
 def reading_json_file(filename: str) -> dict:
