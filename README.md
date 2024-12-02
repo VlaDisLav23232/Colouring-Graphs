@@ -87,6 +87,6 @@ Thanks to this computer project, we learned to distribute responsibilities much 
 ## Developers
 Vlad (shymanovskyi.pn@ucu.edu.ua)
 Daryna (horetska.pn@ucu.edu.ua)
-Vladimir (yanishevskyi.sn@ucu.edu.ua)
+Volodymyr (yanishevskyi.sn@ucu.edu.ua)
 Liza (piletska.pn@ucu.edu.ua)
 Diana (lyzenko.pn@ucu.edu.ua)
