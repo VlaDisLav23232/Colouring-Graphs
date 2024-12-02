@@ -1,7 +1,7 @@
 {
     "1": {
         "color": "r",
-        "edge_with": [1, 2, 3]
+        "edge_with": [2, 3, 4]
     },
     "2": {
         "color": "b",
@@ -9,22 +9,10 @@
     },
     "3": {
         "color": "b",
-        "edge_with": [1, 2, 4, 5, 6, 7]
+        "edge_with": [1, 2, 4]
     },
     "4": {
         "color": "r",
-        "edge_with": [2, 3, 5, 6]
-    },
-    "5": {
-        "color": "r",
-        "edge_with": [3, 4]
-    },
-    "6": {
-        "color": "b",
-        "edge_with": [3, 4]
-    },
-    "7": {
-        "color": "b",
-        "edge_with": [3]
+        "edge_with": [1, 2, 3]
     }
 }
