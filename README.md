@@ -9,6 +9,19 @@ In an undirected graph, each vertex is colored red, green, or blue. The coloring
 ## Input data
 The program is given a JSON file with a graph which coloring needs to be found.
 
+## Installation and Using
+
+1. Clone repository: https://github.com/VlaDisLav23232/Colouring-Graphs
+2. Install necessary libraries:
+    import argparse
+    import json
+    import networkx as nx
+    import matplotlib.pyplot as plt
+3. Write to terminal:  python testing_prog.py filename.json --draw  
+(for example python testing_prog.py test_json_3.json --draw )
+4. Now you can see graph before recoloring 
+5. To see recolored graph you should close window of the before recoloring program. If graph can't be recolored you will see the message 'The graph cannot be recolored!' in terminal
+
 ## Our Functions:
 
 1. arguments
@@ -65,8 +78,9 @@ Writing the basis of the algorithm - Vlad
 Creating a function for graph visualization - Yelizaveta
 Creating functions for working with the graphical interface - Volodymyr and Diana
 Creating files on which the program will be tested, and functions for reading and converting the JSON file - Daryna
+Presentation - Volodymyr
 
-## Impressions from the implementation
+## Impressions from the teamwork
 
 Thanks to this computer project, we learned to distribute responsibilities much better, learned interesting properties of graphs. An interesting challenge for us was to develop our own algorithm for finding a successful coloring, because we did not find alternatives for creating. Thank you for this oportunity of teamwork! Thank for our assistent Sofia that help and mentoring us and for Ms. Julia and Mr. Andrew for high knowledge in discrete math!
 
@@ -74,5 +88,5 @@ Thanks to this computer project, we learned to distribute responsibilities much 
 Vlad (shymanovskyi.pn@ucu.edu.ua)
 Daryna (horetska.pn@ucu.edu.ua)
 Vladimir (yanishevskyi.sn@ucu.edu.ua)
-Liza ()
+Liza (piletska.pn@ucu.edu.ua)
 Diana(lyzenko.pn@ucu.edu.ua)
