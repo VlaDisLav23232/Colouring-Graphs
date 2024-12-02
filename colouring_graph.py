@@ -12,10 +12,14 @@ def arguments():
     """
     parser = argparse.ArgumentParser(description="Graph Coloring Program")
     parser.add_argument("input_file", type=str, nargs = "?",\
-    default=None, help="Path to the JSON file \
-    containing graph data",)
+        default=None, help="Path to the JSON file \
+        containing graph data. Note: it should not be empty!",)
     parser.add_argument("--draw", action="store_true",\
-    help="Visualize the graph before and after after recoloring",)
+        help="Visualize the graph before and after after recoloring.\
+        With --draw argument you should write the name of a json-file\
+        which will contain the graph. This graph at first will be vizualized\
+        on the separate window. After closing the window,\
+        you will get another graph, recoloured one.",)
 
     args = parser.parse_args()
 
@@ -28,28 +32,49 @@ def run_program():
     '''
     args = arguments()
 
-    print("-------------------------------------------\n\
-WELCOME TO THE GRAPH RECOULORER!\n\
--------------------------------------------")
+
     if args.draw:
-        if args.input_file.endswith(".json"):
-            data = reading_json_file(args.input_file)
-            recolored_data = drawing_with_new_colours(data)
-            if recolored_data is None:
+        try:
+            if args.input_file is None:
                 print("-----------------------------------\n\
+You should input a name of the file!\n\
+-----------------------------------")
+            elif args.input_file.endswith(".json"):
+                data = reading_json_file(args.input_file)
+                recolored_data = drawing_with_new_colours(data)
+                if recolored_data is None:
+                    print("-----------------------------------\n\
 The graph cannot be recoloured!\n\
 -----------------------------------")
-            elif not recolored_data:
-                print("--------------------------------------------------------\n\
+                elif not recolored_data:
+                    print("--------------------------------------------------------\n\
 This graph does not have vertices! Try something else!\n\
 --------------------------------------------------------")
+                else:
+                    print("------------------------------\n\
+Here is your graph before recolouring!\n\
+------------------------------")
+                    draw_graph(data)
+                    print("------------------------------\n\
+Here is your graph after recolouring!\n\
+------------------------------")
+                    draw_graph(recolored_data)
             else:
-                draw_graph(data)
-                draw_graph(recolored_data)
-        else:
-            print(f"--------------------------------------------\n\
+                print(f"--------------------------------------------\n\
 The file {args.input_file} is not a JSON file!\n\
 --------------------------------------------")
+        except FileNotFoundError:
+            print("--------------------------------------\n\
+File with such name does not exist!\n\
+--------------------------------------")
+    else:
+        print("-------------------------------------------------------------------------\n\
+WELCOME TO THE GRAPH RECOLOURER!\n\
+\n\
+Write to terminal 'colouring_graph.py *name of the file(json)* --draw'\n\
+to see at first the graph before recolouring and then by closing the\n\
+window of graph before recolouring see the graph after recolouring.\n\
+-------------------------------------------------------------------------")
 
 
 def reading_json_file(filename: str) -> dict:

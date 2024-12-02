@@ -13,10 +13,10 @@ The program is given a JSON file with a graph which coloring needs to be found.
 
 1. Clone repository: https://github.com/VlaDisLav23232/Colouring-Graphs
 2. Install necessary libraries:
-    import argparse
-    import json
-    import networkx as nx
-    import matplotlib.pyplot as plt
+    argparse
+    json
+    networkx
+    matplotlib
 3. Write to terminal:  python colouring_graph.py filename.json --draw  
 (for example python colouring_graph.py test_json_3.json --draw )
 4. Now you can see graph before recoloring 
