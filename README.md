@@ -85,8 +85,8 @@ Presentation - Volodymyr
 Thanks to this computer project, we learned to distribute responsibilities much better, learned interesting properties of graphs. An interesting challenge for us was to develop our own algorithm for finding a successful coloring, because we did not find alternatives for creating. Thank you for this oportunity of teamwork! Thank for our assistent Sofia that help and mentoring us and for Ms. Julia and Mr. Andrew for high knowledge in discrete math!
 
 ## Developers
-Vlad (shymanovskyi.pn@ucu.edu.ua)\n
-Daryna (horetska.pn@ucu.edu.ua)\n
-Vladimir (yanishevskyi.sn@ucu.edu.ua)\n
-Liza (piletska.pn@ucu.edu.ua)\n
+Vlad (shymanovskyi.pn@ucu.edu.ua)
+Daryna (horetska.pn@ucu.edu.ua)
+Vladimir (yanishevskyi.sn@ucu.edu.ua)
+Liza (piletska.pn@ucu.edu.ua)
 Diana (lyzenko.pn@ucu.edu.ua)
