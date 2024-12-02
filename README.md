@@ -17,8 +17,8 @@ The program is given a JSON file with a graph which coloring needs to be found.
     import json
     import networkx as nx
     import matplotlib.pyplot as plt
-3. Write to terminal:  python testing_prog.py filename.json --draw  
-(for example python testing_prog.py test_json_3.json --draw )
+3. Write to terminal:  python colouring_graph.py filename.json --draw  
+(for example python colouring_graph.py test_json_3.json --draw )
 4. Now you can see graph before recoloring 
 5. To see recolored graph you should close window of the before recoloring program. If graph can't be recolored you will see the message 'The graph cannot be recolored!' in terminal
 
@@ -89,4 +89,4 @@ Vlad (shymanovskyi.pn@ucu.edu.ua)
 Daryna (horetska.pn@ucu.edu.ua)
 Vladimir (yanishevskyi.sn@ucu.edu.ua)
 Liza (piletska.pn@ucu.edu.ua)
-Diana(lyzenko.pn@ucu.edu.ua)
+Diana (lyzenko.pn@ucu.edu.ua)
