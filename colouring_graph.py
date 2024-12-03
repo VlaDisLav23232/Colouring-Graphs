@@ -4,22 +4,30 @@ import argparse
 import json
 import networkx as nx
 import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 
 
 def arguments():
     """
     Reads arguments for argparse.
     """
-    parser = argparse.ArgumentParser(description="Graph Coloring Program")
+    parser = argparse.ArgumentParser(description="Graph Recoloring Program")
     parser.add_argument("input_file", type=str, nargs = "?",\
         default=None, help="Path to the JSON file \
         containing graph data. Note: it should not be empty!",)
     parser.add_argument("--draw", action="store_true",\
-        help="Visualize the graph before and after after recoloring.\
+        help="Visualizes the graph before and after after recoloring.\
         With --draw argument you should write the name of a json-file\
         which will contain the graph. This graph at first will be vizualized\
         on the separate window. After closing the window,\
         you will get another graph, recoloured one.",)
+    parser.add_argument("--ani_draw", action="store_true",\
+        help="Visualizes the recolouring of graph with special animation.\
+        With --ani_draw argument you should write the name of a json-file\
+        which will contain the graph. This graph will be vizualized\
+        on the separate window. 1 second after the window was opened an animation\
+        of recolouring starts. The interval of colouring every vertice is based\
+        on amount of vertices in the graph",)
 
     args = parser.parse_args()
 
@@ -33,7 +41,7 @@ def run_program():
     args = arguments()
 
 
-    if args.draw:
+    if args.draw or args.ani_draw:
         try:
             if args.input_file is None:
                 print("-----------------------------------\n\
@@ -46,19 +54,25 @@ You should input a name of the file!\n\
                     print("-----------------------------------\n\
 The graph cannot be recoloured!\n\
 -----------------------------------")
-                elif not recolored_data:
+                elif not data:
                     print("--------------------------------------------------------\n\
 This graph does not have vertices! Try something else!\n\
 --------------------------------------------------------")
                 else:
-                    print("------------------------------\n\
+                    if args.draw:
+                        print("------------------------------\n\
 Here is your graph before recolouring!\n\
 ------------------------------")
-                    draw_graph(data)
-                    print("------------------------------\n\
+                        draw_graph(data)
+                        print("------------------------------\n\
 Here is your graph after recolouring!\n\
 ------------------------------")
-                    draw_graph(recolored_data)
+                        draw_graph(recolored_data)
+                    elif args.ani_draw:
+                        print("------------------------------\n\
+Here is your animated graph!\n\
+------------------------------")
+                        draw_graph_animated(data, recolored_data)
             else:
                 print(f"--------------------------------------------\n\
 The file {args.input_file} is not a JSON file!\n\
@@ -74,6 +88,8 @@ WELCOME TO THE GRAPH RECOLOURER!\n\
 Write to terminal 'colouring_graph.py *name of the file(json)* --draw'\n\
 to see at first the graph before recolouring and then by closing the\n\
 window of graph before recolouring see the graph after recolouring.\n\
+Or write to terminal 'colouring_graph.py *name of the file(json)* --ani_draw'\n\
+to see recolouring of the graph in a real time!\n\
 -------------------------------------------------------------------------")
 
 
@@ -128,6 +144,7 @@ def drawing_with_new_colours(data: dict, num: int = 1, new_dict: None|dict = Non
 
     return new_dict
 
+
 def draw_graph(data: dict) -> None:
     """
     Visualizes the graph based on the graph data.
@@ -146,6 +163,65 @@ def draw_graph(data: dict) -> None:
         with_labels=True,
         node_color=[graph.nodes[node]['color'] for node in graph],
     )
+    plt.show()
+
+
+def draw_graph_animated(graph_before: dict, graph_after: dict) -> None:
+    """
+    Animates the transition from one graph to another by changing node colors.
+
+    :param graph_before: dict, Initial graph data.
+    :param graph_after: dict, Target graph data.
+    :return: None, shows the animation of the transition.
+    """
+
+    #function for building a graph
+    def build_graph(data):
+        graph = nx.Graph()
+        for node, info in data.items():
+            graph.add_node(node, color=info["color"])
+            graph.add_edges_from((node, str(neighbor)) for neighbor in info["edge_with"])
+        return graph
+
+    #making two graphs
+    graph1 = build_graph(graph_before)
+    graph2 = build_graph(graph_after)
+
+    #making container and object that saves a graph
+    fig, ax = plt.subplots()
+
+    #drawing graph func
+    def draw_graph_new(graph, ax, colors):
+        ax.clear()
+        nx.draw_circular(
+            graph,
+            with_labels=True,
+            node_color=colors,
+        )
+
+    nodes = list(graph1.nodes)
+    steps = len(nodes)
+    color_frames = []
+
+    #making a list of lists with info at every moment of animation
+    for step in range(steps + 1):
+        current_colors = [
+            graph2.nodes[node]["color"] if idx < step else graph1.nodes[node]["color"]
+            for idx, node in enumerate(nodes)
+        ]
+        color_frames.append(current_colors)
+
+    #func that draws a new graph at exact moment
+    def update(frame):
+        draw_graph_new(graph1, ax, color_frames[frame])
+
+    #starts animation
+    if steps <= 10:
+        _ = FuncAnimation(fig, update, frames=len(color_frames), repeat=False, interval=800)
+    elif 10 < steps < 25:
+        _ = FuncAnimation(fig, update, frames=len(color_frames), repeat=False, interval=550)
+    elif steps >= 25:
+        _ = FuncAnimation(fig, update, frames=len(color_frames), repeat=False, interval=250)
     plt.show()
 
 
