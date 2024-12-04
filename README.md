@@ -17,10 +17,10 @@ The program is given a JSON file with a graph which coloring needs to be found.
     json
     networkx
     matplotlib
-3. Write to terminal:  python colouring_graph.py filename.json --draw  
-(for example python colouring_graph.py test_json_3.json --draw )
-4. Now you can see graph before recoloring 
-5. To see recolored graph you should close window of the before recoloring program. If graph can't be recolored you will see the message 'The graph cannot be recolored!' in terminal
+3. Write to terminal:  python colouring_graph.py filename.json --draw if you want to see graph before and after colouring or python colouring_graph.py filename.json --ani_draw if you want to see animated coloring
+(for example python colouring_graph.py test_json_3.json --draw  or python colouring_graph.py test_json_3.json --ani_draw)
+
+* If graph can't be recolored you will see the message 'The graph cannot be recolored!' in terminal
 
 ## Our Functions:
 
@@ -67,6 +67,10 @@ The draw_graph function visualizes a graph based on the data provided in the for
  4) Graph Visualization: The graph is visualized using the nx.draw_circular function. Nodes are displayed with appropriate numbering, and their colors correspond to the color attribute specified in the graph.
  5) Graph Display: The graph is shown in a new window using the plt.show() function.
 
+6. draw_graph_animated
+
+The draw_graph_animated function creates an animation that transitions one graph into another by gradually changing the colors of the nodes.
+
  ## Discrete math knowledge used
 
  The concept of a simple and complete graph. We were also interested in the chromatic number, but did not use it in the algorithm
@@ -76,9 +80,10 @@ The draw_graph function visualizes a graph based on the data provided in the for
 Development of the math part and analysis of graph variants - Daryna, Vlad
 Writing the basis of the algorithm - Vlad
 Creating a function for graph visualization - Yelizaveta
-Creating functions for working with the graphical interface - Volodymyr and Diana
+Creating function for animation for coloured graph - Vlad
+Creating functions for working with the user interface - Volodymyr and Diana
 Creating files on which the program will be tested, and functions for reading and converting the JSON file - Daryna
-Presentation - Volodymyr
+Presentation - Volodymyr, Yelizaveta, Diana
 
 ## Impressions from the teamwork
 
