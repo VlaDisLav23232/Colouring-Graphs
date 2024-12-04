@@ -99,7 +99,17 @@ def reading_json_file(filename: str) -> dict:
 
     :param filename: str, file from which we read an info
     :return: dict, dictionary with nodes as a key and info about them as a value
+
+    >>> reading_json_file("test_json_1.json")
+    {'1': {'color': 'b', 'edge_with': [2, 3, 4]}, '2': {'color': 'b',\
+ 'edge_with': [1, 4]}, '3': {'color': 'g', 'edge_with': [1]},\
+ '4': {'color': 'r', 'edge_with': [1, 2]}}
+    >>> reading_json_file("test_json_2.json")
+    {'1': {'color': 'b', 'edge_with': [2, 3, 4]}, '2': {'color': 'r',\
+ 'edge_with': [1, 3]}, '3': {'color': 'r', 'edge_with':\
+ [1, 2, 4]}, '4': {'color': 'r', 'edge_with': [1, 3]}}
     """
+
     with open(filename, 'r', encoding = 'utf-8') as file:
         result = json.load(file)
     return result
@@ -116,6 +126,15 @@ def drawing_with_new_colours(data: dict, num: int = 1, new_dict: None|dict = Non
     :param new_dict: None or dict, None at the recursion depth 1 and
     dict at the recursion depth with 2 or more. Saves the data about recoloured graph
     :return: dict, recoloured graph
+
+    >>> drawing_with_new_colours(reading_json_file("test_json_1.json"))
+    {'1': {'color': 'r', 'edge_with': [2, 3, 4]}, '2': {'color': 'g',\
+ 'edge_with': [1, 4]}, '3': {'color': 'b', 'edge_with': [1]},\
+ '4': {'color': 'b', 'edge_with': [1, 2]}}
+    >>> drawing_with_new_colours(reading_json_file("test_json_2.json"))
+    {'1': {'color': 'r', 'edge_with': [2, 3, 4]}, '2': {'color': 'g',\
+ 'edge_with': [1, 3]}, '3': {'color': 'b', 'edge_with':\
+ [1, 2, 4]}, '4': {'color': 'g', 'edge_with': [1, 3]}}
     """
 
     if new_dict is None:
@@ -226,4 +245,6 @@ def draw_graph_animated(graph_before: dict, graph_after: dict) -> None:
 
 
 if __name__ == '__main__':
+    import doctest
+    print(doctest.testmod())
     run_program()
